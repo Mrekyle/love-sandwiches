@@ -28,14 +28,20 @@ def get_sales_data():
     """
     Gets sales data from the user
     """
-    print('Please enter the sales data from the latest Market day.')
-    print('Data should be six numbers and seperated by commas')
-    print('Example: 20, 3, 54, 19, 43, 21\n')
+    while True:
+        print('Please enter the sales data from the latest Market day.')
+        print('Data should be six numbers and seperated by commas')
+        print('Example: 20, 3, 54, 19, 43, 21\n')
 
-    data_str = input('Please enter your data here: ')    
-    sales_data = data_str.split(',')  # Removes the commas from the string and creates individual items
-    validate_data(sales_data)  # Calls the valiadata data function to validate the inputted data
+        data_str = input('Please enter your data here: ')    
+        sales_data = data_str.split(',')  # Removes the commas from the string and creates individual items
+        
+        if validate_data(sales_data):  # Calls the valiadata data function to validate the inputted data
+            print('Data is valid!')
+            break
+        # If statement meand the while loop will continue to run until the validate_data returns true
 
+    return sales_data
 
 def validate_data(values): 
     """
@@ -52,6 +58,8 @@ def validate_data(values):
             )
     except ValueError as e:  # Setting the value error as the variable. To be able to print out in the statement
         print(f"Invalid data: {e}, please try again.\n")
+        return False
 
+    return True
 
-get_sales_data()
+data = get_sales_data()
