@@ -1,9 +1,9 @@
 """
-pythong3 run.py - Will allow the app to run in the terminal
+python3 run.py - Will allow the app to run in the terminal
 """
 
 import gspread  # Importing an entire library
-from google.oauth2.service_account import Credentials 
+from google.oauth2.service_account import Credentials
 # Importing one function from the library
 
 SCOPE = [  # Telling the application what API's it will have access to
