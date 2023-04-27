@@ -33,22 +33,22 @@ def get_sales_data():
     print('Example: 20, 3, 54, 19, 43, 21\n')
 
     data_str = input('Please enter your data here: ')    
-    sales_data = data_str.split(',')
-    validate_data(sales_data)
+    sales_data = data_str.split(',') # Removes the commas from the string and creates individual items
+    validate_data(sales_data) # Calls the valiadata data function to validate the inputted data
 
 
-def validate_data(values):
+def validate_data(values): 
     """
     Inside the try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
     """
     try:
-        if len(values) != 6:
+        if len(values) != 6: # If the length of the string is less than 6 it will cause the error
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
             )
-    except ValueError as e:
+    except ValueError as e: # Setting the value error as the variable. To be able to print out in the statement
         print(f"Invalid data: {e}, please try again.\n")
 
 
