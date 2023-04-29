@@ -69,6 +69,7 @@ def update_sales_worksheet(data):
     print('Currently updating the sales worksheet....\n')
     sales_worksheet = SHEET.worksheet('sales')  # Accessing the worksheet tab. Not the document like above
     sales_worksheet.append_row(data)  # Adds a new row of data to the sales worksheet 
+    print('Sales worksheet updated successfully.\n')
 
 
 data = get_sales_data()
