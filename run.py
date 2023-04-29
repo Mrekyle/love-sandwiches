@@ -106,6 +106,21 @@ def calculate_surplus_stock(sales_row):
 
     return surplus_data
 
+def get_last_5_entries_sales():
+    """
+    Gets the last 5 sales data entries and calculates the average
+    from that data and adds 10% as well as rounding up to the nearest whole numbers
+    """
+    sales = SHEET.worksheet('sales')
+
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    
+    return columns
+
+
 def main():  # Common practice to add all function calls inside a main function, So only calling one function 
     """
     Runs all main program functions
@@ -120,3 +135,5 @@ def main():  # Common practice to add all function calls inside a main function,
 
 print('Welcome to Love Sandwiches Data automation service.\n')
 main()
+
+sales_column = get_last_5_entries_sales()
