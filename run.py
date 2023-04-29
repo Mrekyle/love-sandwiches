@@ -30,16 +30,16 @@ def get_sales_data():
     """
     while True:
         print('Please enter the sales data from the latest Market day.')
-        print('Data should be six numbers and seperated by commas')
+        print('Data should be six numbers and separated by commas')
         print('Example: 20, 3, 54, 19, 43, 21\n')
 
         data_str = input('Please enter your data here: ')    
         sales_data = data_str.split(',')  # Removes the commas from the string and creates individual items
         
-        if validate_data(sales_data):  # Calls the valiadata data function to validate the inputted data
+        if validate_data(sales_data):  # Calls the validate data function to validate the inputted data
             print('Data is valid!')
             break
-        # If statement meand the while loop will continue to run until the validate_data returns true
+        # If statement means the while loop will continue to run until the validate_data returns true
 
     return sales_data
 
@@ -87,6 +87,15 @@ def calculate_surplus_stock(sales_row):
 
     return surplus_data
 
+def update_surplus_worksheet(new_surplus_data):
+    """
+    Updates the surplus stock worksheet calculated by the sales data  
+    """
+    print('\nCurrently updating the surplus stock worksheet...\n')
+    surplus_worksheet = SHEET.worksheet('surplus')
+    surplus_worksheet.append_row(new_surplus_data)
+    print('Surplus data worksheet updated successfully.\n')
+
 def main():  # Common practice to add all function calls inside a main function, So only calling one function 
     """
     Runs all main program functions
@@ -96,6 +105,7 @@ def main():  # Common practice to add all function calls inside a main function,
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_stock(sales_data)
     print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
 
 
 print('Welcome to Love Sandwiches Data automation service.\n')
