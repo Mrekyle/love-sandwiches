@@ -108,8 +108,7 @@ def calculate_surplus_stock(sales_row):
 
 def get_last_5_entries_sales():
     """
-    Gets the last 5 sales data entries and calculates the average
-    from that data and adds 10% as well as rounding up to the nearest whole numbers
+    Gets the last 5 sales data entries.
     """
     sales = SHEET.worksheet('sales')
 
@@ -120,6 +119,21 @@ def get_last_5_entries_sales():
     
     return columns
 
+def calculate_stock_data(data):
+    """
+    Calculates the average stock from the sales of the last 5 market days. 
+    Adding 10%
+    """
+    print('Calculating the Average stock data...\n')
+    new_stock_data = []
+
+    for column in data:
+        int_column = [int(num) for num in column]  # Converting the string into integers 
+        average = sum(int_column) / len(int_column)  # Calculates the average of the last 5 market days data
+        stock_num = average * 1.1  # Adds 10% to the total number inside the average variable
+        new_stock_data.append(round(stock_num))  # Appends the data to the new list whilst also rounding the data to the nearest whole number
+
+    return new_stock_data 
 
 def main():  # Common practice to add all function calls inside a main function, So only calling one function 
     """
@@ -130,10 +144,11 @@ def main():  # Common practice to add all function calls inside a main function,
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_stock(sales_data)
     update_worksheet(new_surplus_data, "surplus")  # Calls the update function passing which worksheet to be updated.
+    sales_column = get_last_5_entries_sales()
+    stock_data = calculate_stock_data(sales_column)
+    update_worksheet(stock_data, "stock")
     #  Allowing us to actively change the string displayed. 
 
 
 print('Welcome to Love Sandwiches Data automation service.\n')
 main()
-
-sales_column = get_last_5_entries_sales()
