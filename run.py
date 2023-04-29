@@ -71,6 +71,18 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)  # Adds a new row of data to the sales worksheet 
     print('Sales worksheet updated successfully.\n')
 
+def calculate_surplus_stock(sales_row):
+    """
+    Calculates the surplus sandwich stock at the end 
+    of the market day
+    """
+    print('Calculating surplus data...\n')
+    stock = SHEET.worksheet('stock').get_all_values()
+    stock_row = stock[-1]
+    print(stock_row)
+
+
+
 def main():  # Common practice to add all function calls inside a main function, So only calling one function 
     """
     Runs all main program functions
@@ -78,5 +90,8 @@ def main():  # Common practice to add all function calls inside a main function,
     data = get_sales_data()
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
+    calculate_surplus_stock(sales_data)
 
+
+print('Welcome to Love Sandwiches Data automation service.\n')
 main()
