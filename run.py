@@ -33,7 +33,7 @@ def get_sales_data():
         print('Data should be six numbers and separated by commas')
         print('Example: 20, 3, 54, 19, 43, 21\n')
 
-        data_str = input('Please enter your data here: ')    
+        data_str = input('Please enter your data here:\n')    
         sales_data = data_str.split(',')  # Removes the commas from the string and creates individual items
         
         if validate_data(sales_data):  # Calls the validate data function to validate the inputted data
