@@ -77,11 +77,15 @@ def calculate_surplus_stock(sales_row):
     of the market day
     """
     print('Calculating surplus data...\n')
-    stock = SHEET.worksheet('stock').get_all_values()
-    stock_row = stock[-1]
-    print(stock_row)
+    stock = SHEET.worksheet('stock').get_all_values()  # Gets all the values from the stock sheet
+    stock_row = stock[-1]  # Gets the last row of the values in the stock worksheet
 
+    surplus_data = []
+    for stock, sales, in zip(stock_row, sales_row):  # zip() allows us to iterate through multiple lists at the same time
+        surplus = int(stock) - sales  # Subtracting the two figures from each other
+        surplus_data.append(surplus)  # Appending the list to the surplus data list. Ready to add to the worksheet
 
+    return surplus_data
 
 def main():  # Common practice to add all function calls inside a main function, So only calling one function 
     """
@@ -90,7 +94,8 @@ def main():  # Common practice to add all function calls inside a main function,
     data = get_sales_data()
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
-    calculate_surplus_stock(sales_data)
+    new_surplus_data = calculate_surplus_stock(sales_data)
+    print(new_surplus_data)
 
 
 print('Welcome to Love Sandwiches Data automation service.\n')
